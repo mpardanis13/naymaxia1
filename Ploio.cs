@@ -7,9 +7,19 @@ using System.Windows.Forms;
 
 namespace naymaxia1
 {
-    internal class Ploio
+    public class Ploio
     {
-        public List<Button> ploio;
+        public List<Button> pedia;
+        String name = "";
+        public Ploio(List<Button> pedia, String name)
+        {
+            this.pedia = pedia;
+            this.name = name;
+        }
+        public override string ToString()
+        {
+            return name;
+        }
 
     }
 }

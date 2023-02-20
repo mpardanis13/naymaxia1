@@ -16,6 +16,10 @@ namespace naymaxia1
         public List<Button> polemiko = new List<Button>();
         public List<Button> antitorpiliko = new List<Button>();
         public List<Button> aeroplanoforo = new List<Button>();
+        public Ploio ypobryxioP;
+        public Ploio polemikoP;
+        public Ploio antitorpilikoP;
+        public Ploio aeroplanoforoP;
 
         Random r = new Random();
 
@@ -117,6 +121,7 @@ namespace naymaxia1
                     }
                 }
             }
+            ypobryxioP = new Ploio(ypobryxio, "ypobryxio");
 
             // polemiko
             while (true)
@@ -203,6 +208,8 @@ namespace naymaxia1
                     break;
                 }
             }
+            polemikoP = new Ploio(polemiko, "polemiko");
+
 
             // antitorpiliko
             while (true)
@@ -247,7 +254,7 @@ namespace naymaxia1
                                 }
                                 kateilhmenaKoytakia.Add(rnd);
                                 kateilhmenaKoytakia.Add(rnd - 1);
-                                kateilhmenaKoytakia.Add(rnd - 2);
+                              kateilhmenaKoytakia.Add(rnd - 2);
                                 kateilhmenaKoytakia.Add(rnd - 3);
 
                                 break;
@@ -297,6 +304,8 @@ namespace naymaxia1
                     break;
                 }
             }
+            antitorpilikoP = new Ploio(antitorpiliko, "antitorpiliko");
+
             // aeroplanoforo
             while (true)
             {
@@ -392,6 +401,8 @@ namespace naymaxia1
                     break;
                 }
             }
+            aeroplanoforoP = new Ploio(aeroplanoforo, "aeroplanoforo");
+
 
         }
 
@@ -479,6 +490,8 @@ namespace naymaxia1
                     }
                 }
             }
+            ypobryxioP = new Ploio(ypobryxio, "ypobryxio");
+
 
             // polemiko
             while (true)
@@ -561,6 +574,7 @@ namespace naymaxia1
                     break;
                 }
             }
+            polemikoP = new Ploio(polemiko, "polemiko");
 
             // antitorpiliko
             while (true)
@@ -651,6 +665,8 @@ namespace naymaxia1
                     break;
                 }
             }
+            antitorpilikoP = new Ploio(antitorpiliko, "antitorpiliko");
+
             // aeroplanoforo
             while (true)
             {
@@ -742,6 +758,8 @@ namespace naymaxia1
                     break;
                 }
             }
+            aeroplanoforoP = new Ploio(aeroplanoforo, "aeroplanoforo");
+
 
         }
     }

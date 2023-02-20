@@ -16,19 +16,19 @@ namespace naymaxia1
     {
         SQLiteConnection connection;
         String connectionString = "Data source=identifier.sqlite;Version=3";
-        public int prospatheies, seconds, nikes=0, httes=0;
+        public int prospatheies, seconds, nikes = 0, httes = 0;
         public Tablo tabloPaixth;
-        public List<Button> ploia;
         public Tablo tabloYpologisth;
         public List<int> kateilhmenaKoytakia = new List<int>();
 
         public Form1()
         {
             InitializeComponent();
+            // Arxikopoihsh twn 2 tablo
             List<Button> tabloPaixthL = new List<Button>();
             List<Button> tabloYpologisthL = new List<Button>();
 
-
+            // Ta koympia button1-100 antistoixoyn ston paixth enw ta button101-200 ston ypologisth
             for (int i = 1; i <= 200;)
             {
                 foreach (var button in this.Controls.OfType<Button>())
@@ -66,14 +66,14 @@ namespace naymaxia1
             StartBtn.Visible = false;
             StartBtn.Enabled = false;
             textBox1.Visible = false;
-            textBox1.Enabled= false;
+            textBox1.Enabled = false;
             label42.Visible = false;
             label42.Enabled = false;
             button203.Visible = false;
             button203.Enabled = false;
             tabloPaixth.clearTablo();
             tabloYpologisth.clearTablo();
-            foreach (Button b in tabloYpologisth.tablo) b.Enabled = true; 
+            foreach (Button b in tabloYpologisth.tablo) b.Enabled = true;
             tabloPaixth.topothethshPloiwnPaixth();
             tabloYpologisth.topothethshPloiwnYpologisth();
             timer1.Enabled = true;
@@ -84,6 +84,7 @@ namespace naymaxia1
             connection = new SQLiteConnection(connectionString);
         }
 
+        // Kinhsh paixth
         private void button201_Click(object sender, EventArgs e)
         {
             prospatheies++;
@@ -94,13 +95,12 @@ namespace naymaxia1
 
             if (tabloYpologisth.ypobryxio.Contains(btn))
             {
-
                 btn.BackgroundImage = c;
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
                 tabloYpologisth.ypobryxio.RemoveAt(tabloYpologisth.ypobryxio.IndexOf(btn));
                 if (!tabloYpologisth.ypobryxio.Any())
                 {
-                    label41.Text = "To ypobryxio toy antipaloy katastrafhke!";
+                    label41.Text = "To " + tabloYpologisth.ypobryxioP + " toy antipaloy katastrafhke!";
                 }
             }
             else if (tabloYpologisth.aeroplanoforo.Contains(btn))
@@ -110,7 +110,7 @@ namespace naymaxia1
                 tabloYpologisth.aeroplanoforo.RemoveAt(tabloYpologisth.aeroplanoforo.IndexOf(btn));
                 if (!tabloYpologisth.aeroplanoforo.Any())
                 {
-                    label41.Text = "To aeroplanoforo toy antipaloy katastrafhke!";
+                    label41.Text = "To " + tabloYpologisth.aeroplanoforoP + " toy antipaloy katastrafhke!";
                 }
 
             }
@@ -121,7 +121,7 @@ namespace naymaxia1
                 tabloYpologisth.polemiko.RemoveAt(tabloYpologisth.polemiko.IndexOf(btn));
                 if (!tabloYpologisth.polemiko.Any())
                 {
-                    label41.Text = "To polemiko toy antipaloy katastrafhke!";
+                    label41.Text = "To " + tabloYpologisth.polemikoP + " toy antipaloy katastrafhke!";
                 }
 
             }
@@ -132,7 +132,7 @@ namespace naymaxia1
                 tabloYpologisth.antitorpiliko.RemoveAt(tabloYpologisth.antitorpiliko.IndexOf(btn));
                 if (!tabloYpologisth.antitorpiliko.Any())
                 {
-                    label41.Text = "To antitorpiliko toy antipaloy katastrafhke!";
+                    label41.Text = "To " + tabloYpologisth.antitorpilikoP + " toy antipaloy katastrafhke!";
                 }
 
             }
@@ -141,14 +141,16 @@ namespace naymaxia1
                 btn.BackgroundImage = h;
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
             }
-            if(!tabloYpologisth.ypobryxio.Any()&& !tabloYpologisth.polemiko.Any()&& !tabloYpologisth.antitorpiliko.Any()&& !tabloYpologisth.aeroplanoforo.Any())
+
+            // Elegxos gia nikh paixth
+            if (!tabloYpologisth.ypobryxio.Any() && !tabloYpologisth.polemiko.Any() && !tabloYpologisth.antitorpiliko.Any() && !tabloYpologisth.aeroplanoforo.Any())
             {
                 foreach (Button koytaki in tabloYpologisth.tablo)
                 {
                     koytaki.Enabled = false;
                 }
                 nikes++;
-                MessageBox.Show("Nikhths einai o xrhsths!\nProspatheies poy eginan: "+ prospatheies.ToString()+".\nPerasan "+seconds+" deyterolepta.\nNikes: "+nikes.ToString()+" Httes: "+httes.ToString());
+                MessageBox.Show("Nikhths einai o xrhsths!\nProspatheies poy eginan: " + prospatheies.ToString() + ".\nPerasan " + seconds + " deyterolepta.\nNikes: " + nikes.ToString() + " Httes: " + httes.ToString());
                 timer1.Enabled = false;
                 StartBtn.Enabled = true;
                 StartBtn.Visible = true;
@@ -175,6 +177,7 @@ namespace naymaxia1
 
         }
 
+        // Ektypwsh statistikwn
         private void button203_Click(object sender, EventArgs e)
         {
             String stats = "";
@@ -185,11 +188,11 @@ namespace naymaxia1
             while (reader.Read())
             {
                 stats += "Onoma: ";
-                stats+=reader.GetString(0);
-                stats+=", Nikhths: ";
+                stats += reader.GetString(0);
+                stats += ", Nikhths: ";
                 stats += reader.GetString(1);
                 stats += ", Diarkeia: ";
-                stats+=(reader.GetInt16(2).ToString());
+                stats += (reader.GetInt16(2).ToString());
                 stats += "\n";
             }
             MessageBox.Show(stats);
@@ -212,9 +215,10 @@ namespace naymaxia1
             }
             foreach (Button button in tabloPaixth.tablo)
             {
-                if(button.Name.EndsWith("n"+rnd.ToString())) {
+                if (button.Name.EndsWith("n" + rnd.ToString()))
+                {
                     btn = button;
-                        }
+                }
             }
             Bitmap c = new Bitmap("cross.png");
             Bitmap h = new Bitmap("hyphen.png");
@@ -227,7 +231,7 @@ namespace naymaxia1
                 tabloPaixth.ypobryxio.RemoveAt(tabloPaixth.ypobryxio.IndexOf(btn));
                 if (!tabloPaixth.ypobryxio.Any())
                 {
-                    label41.Text = "Bythisthke to ypobryxio moy!";
+                    label41.Text = "Bythisthke to " + tabloPaixth.ypobryxioP + " moy!";
 
                 }
             }
@@ -238,7 +242,7 @@ namespace naymaxia1
                 tabloPaixth.aeroplanoforo.RemoveAt(tabloPaixth.aeroplanoforo.IndexOf(btn));
                 if (!tabloPaixth.aeroplanoforo.Any())
                 {
-                    label41.Text = "Bythisthke to aeroplanoforo moy!";
+                    label41.Text = "Bythisthke to " + tabloPaixth.aeroplanoforoP + " moy!";
                 }
 
             }
@@ -249,7 +253,7 @@ namespace naymaxia1
                 tabloPaixth.polemiko.RemoveAt(tabloPaixth.polemiko.IndexOf(btn));
                 if (!tabloPaixth.polemiko.Any())
                 {
-                    label41.Text = "Bythisthke to polemiko moy!";
+                    label41.Text = "Bythisthke to " + tabloPaixth.polemikoP + " moy!";
                 }
 
             }
@@ -260,7 +264,7 @@ namespace naymaxia1
                 tabloPaixth.antitorpiliko.RemoveAt(tabloPaixth.antitorpiliko.IndexOf(btn));
                 if (!tabloPaixth.antitorpiliko.Any())
                 {
-                    label41.Text = "Bythisthke to antitorpiliko moy!";
+                    label41.Text = "Bythisthke to " + tabloPaixth.antitorpilikoP + " moy!";
                 }
 
             }
@@ -269,6 +273,7 @@ namespace naymaxia1
                 btn.BackgroundImage = h;
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
             }
+            // Elegxos gia nikh ypologisth
             if (!tabloPaixth.ypobryxio.Any() && !tabloPaixth.polemiko.Any() && !tabloPaixth.antitorpiliko.Any() && !tabloPaixth.aeroplanoforo.Any())
             {
                 foreach (Button koytaki in tabloPaixth.tablo)
